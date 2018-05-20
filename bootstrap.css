@@ -105,6 +105,11 @@ img {
   vertical-align: middle;
   border: 0;
   -ms-interpolation-mode: bicubic;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
 }
 
 #map_canvas img,
@@ -617,6 +622,7 @@ a:focus {
 .container {
   margin-right: auto;
   margin-left: auto;
+  background-image: url(bg-image.jpg);
   *zoom: 1;
 }
 
@@ -765,6 +771,7 @@ h3 {
 
 h1 {
   font-size: 38.5px;
+  text-align: center;
 }
 
 h2 {
@@ -805,8 +812,14 @@ h4 small {
 
 .page-header {
   padding-bottom: 9px;
-  margin: 20px 0 30px;
-  border-bottom: 1px solid #eeeeee;
+  padding: 0.2em 0.5em;
+    margin: 2em 0;
+    color: #565656;
+    background: #ffeaea;
+    box-shadow: 0px 0px 0px 10px #ffeaea;
+    border: dashed 2px #ffc3c3;
+    border-radius: 8px;
+  
 }
 
 ul,
