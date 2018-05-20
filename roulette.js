@@ -142,6 +142,7 @@
 			p.stopImageNumber = $.isNumeric(defaultProperty.originalStopImageNumber) && Number(defaultProperty.originalStopImageNumber) >= 0 ?
 									Number(defaultProperty.originalStopImageNumber) : Math.floor(Math.random() * p.imageCount);
 			p.startCallback();
+			//alert();
 			roll();
 			p.slowDownTimer = setTimeout(function(){
 				slowDownSetup();
