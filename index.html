@@ -25,8 +25,10 @@
 				</div>
 				<div class="btn_container">
 					<p>
-					<button class="btn btn-large btn-primary start"> START </button>
+					<button class="btn btn-large btn-primary btn-warning start"> START </button>
+					<!--
 					<button class="stop btn-large btn btn-warning"> STOP </button>
+					-->
 					</p>
 				</div>
 				<div class="sound hidden">
@@ -64,6 +66,7 @@
 			$('div.roulette').roulette(option);
 
 			// START!
+		    /*
 			$('.start').click(function(){
 				$('div.roulette').roulette('start');
 				roll();
@@ -74,7 +77,24 @@
 				$('div.roulette').roulette('stop');
 				decide();
 			});
+			*/
+
+			$('.start').click(function(){
+				if ($(this).hasClass("stop")) {
+					$('div.roulette').roulette('stop');
+					decide();
+					$(this).removeClass("stop");
+					$(this).text("START");
+				} else {
+					$('div.roulette').roulette('start');
+					$(this).addClass("stop");
+					$(this).text("STOP");
+					roll();
+				}
+			})
+			 
 		   });
+
 		 </script>
 		 <!--
 		 <script src="myRoulette.js"></script>
