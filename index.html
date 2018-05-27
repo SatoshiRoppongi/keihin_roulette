@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="bootstrap-responsive.css"></link>
 		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css">
 		<link rel="stylesheet" href="demo.css"></link>
+
 	</head>
 	<body>
 		<div class="container">
@@ -18,9 +19,16 @@
 			</div>
 				<div class="roulette_container" >
 					<div class="roulette" style="display:none;">
-						<img src="img1.png"/>
-						<img src="img2.png"/>
-						<img src="img3.png"/>
+						<img src="hatena.jpg" width="500" height="500"/>
+						<img src="img1.png" width="500" height="500"/>
+						<img src="img2.png" width="500" height="500"/>
+						<img src="img3.png" width="500" height="500"/>
+						<img src="img4.jpg" width="500" height="500"/>
+						<img src="img5.jpg" width="500" height="500"/>
+						<img src="img6.jpg" width="500" height="500"/>
+						<img src="img7.jpg" width="500" height="500"/>
+						<img src="img8.jpg" width="500" height="500"/>
+						<img src="img9.jpg" width="500" height="500"/>
 					</div>
 				</div>
 				<div class="btn_container">
@@ -45,6 +53,10 @@
 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> <!-- -->
+		<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/lity/1.6.6/lity.css' />  
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/lity/1.6.6/lity.js'></script>  
+
 		<script src="roulette.js"></script>
 		<script>
 			function roll() {
@@ -64,7 +76,6 @@
 				duration : 500
 			}
 			$('div.roulette').roulette(option);
-
 			// START!
 		    /*
 			$('.start').click(function(){

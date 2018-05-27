@@ -22,12 +22,15 @@
 			totalHeight : null,
 			topPosition : 0,
 
+
 			maxDistance : null,
 			slowDownStartDistance : null,
 
 			isRunUp : true,
 			isSlowdown : false,
 			isStop : false,
+			isHatena : true, //added
+			hatenaImg : null, //added
 
 			distance : 0,
 			runUpDistance : null,
@@ -73,16 +76,29 @@
 				} else {
 					p.isRunUp = false;
 				}
-
 			} else if (p.isSlowdown) {
 				var rate_ = ~~(((p.maxDistance - p.distance) / (p.maxDistance - p.slowDownStartDistance)) * (p.speed));
 				speed_ = rate_ + 1;
+			}
+
+			// ハテナボックスを消す処理
+			if (p.isHatena && p.topPosition >= p.imageHeight) {
+				p.isHatena = false;
+				remove_img(0); // ハテナ画像が最初の要素にあることが前提
+				remove_img(p.$images.length-1);
+
 			}
 
 			if (p.maxDistance && p.distance >= p.maxDistance) {
 				p.isStop = true;
 				reset();
 				p.stopCallback(p.$rouletteTarget.find('img').eq(p.stopImageNumber));
+				
+				display_keihin(p.stopImageNumber);
+				//p.hatenaImg.preppendTo('rouletteTarget'); //
+				//p.imageCount++;
+				//p.totalHeight = p.totalHeight + p.imageHeight;
+
 				return;
 			}
 			p.distance += speed_;
@@ -103,7 +119,16 @@
 		var init = function($roulette) {
 			$roulette.css({ 'overflow' : 'hidden' });
 			defaultProperty.originalStopImageNumber = p.stopImageNumber;
+
 			if (!p.$images) {
+
+				// ハテナ画像をクローンし, hatenaImgにセットする
+				// ハテナ画像が最初の要素にあることが前提
+				p.hatenaImg = $roulette.find('img').eq(0).clone();
+				console.dir(p.hatenaImg.eq(0));
+
+
+
 				p.$images = $roulette.find('img').remove();
 				p.imageCount = p.$images.length;
 				p.$images.eq(0).bind('load',function(){
@@ -120,9 +145,10 @@
 					}
 				});
 			}
+
 			$roulette.find('div').remove();
 			p.$images.css({
-				'display' : 'block'
+				'display' : 'block' //block original
 			});
 			p.$rouletteTarget = $('<div>').css({
 				'position' : 'relative',
@@ -159,6 +185,26 @@
 				slowDownSetup();
 			}
 		}
+
+		// 引数の要素を削除する関数
+		var remove_img = function(img_index) {
+			p.$rouletteTarget.find('img').eq(img_index).remove();
+			p.$images.find('img').eq(img_index).remove();
+			//console.log(p.$rouletteTarget);
+			//console.dir(p.$rouletteTarget);
+			//console.log(JSON.stringify(p.$rouletteTarget));
+			p.imageCount--;
+			p.totalHeight = p.totalHeight - p.imageHeight;
+
+		}
+
+		// 景品を拡大表示する
+		var display_keihin = function(img_index) {
+			var lightbox = lity();
+			lightbox(p.$rouletteTarget.find('img').eq(img_index));
+			remove_img(img_index);
+		}
+
 		var option = function(options) {
 			p = $.extend(p, options);
 			p.speed = Number(p.speed);
